@@ -2,6 +2,7 @@
 
 library(latex2exp)
 library(igraph)
+# devtools::install_github("seungwoo-stat/L1centrality")
 library(L1centrality)
 library(sp)
 
