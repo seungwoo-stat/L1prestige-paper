@@ -15,4 +15,4 @@ This repository contains code to reproduce figures and analysis from the paper "
 
 ### Reference
 
--   Seungwoo Kang and Hee-Seok Oh. (2024) The *L*<sub>1</sub> Prestige Measure and Multiscale Network Analysis. Manuscript.
+-   Seungwoo Kang and Hee-Seok Oh. (2024) *L*<sub>1</sub> Prominence Measures for Directed Graphs. Manuscript.
