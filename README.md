@@ -1,6 +1,6 @@
 # L1prestige-paper
 
-This repository contains code to reproduce figures and analysis from the paper "The *L*<sub>1</sub> Prestige Measure and Multiscale Network Analysis" (Kang and Oh, 2024)
+This repository contains code to reproduce figures and analysis from the paper "*L*<sub>1</sub> Prominence Measures for Directed Graphs" (Kang and Oh, 2024)
 
 - `seoul-weekday-code` reproduces Figure 1 and analysis procedures outlined in Section 4.1 of the paper.
 
