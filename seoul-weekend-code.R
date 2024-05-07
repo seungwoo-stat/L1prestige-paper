@@ -122,6 +122,10 @@ nb.leq.15.ndjg <- nbpres |>
   sapply(\(l) sum(V(seoulweekend)$gu[match(names(sort(l, decreasing = TRUE))[1:15], V(seoulweekend)$name)] %in% c("Nowon-gu","Dobong-gu","Jungnang-gu","Gangbuk-gu")))
 aggregate(nb.leq.15.ndjg, by = list(V(seoulweekend)$gu[match(names(nb.leq.15.ndjg), V(seoulweekend)$name)]), mean)
 
+# number of Nowon-gu and Dobong-gu regions that have local L1 prestige (alpha = 420/424) below the median
+sum(localpres.mat[startsWith(rownames(localpres.mat),"Nowon-gu") | 
+                    startsWith(rownames(localpres.mat),"Dobong-gu"), 82] <= median(localpres.mat[,82]))
+
 # correlation: movement from northern regions vs local L1 prestige (alpha = 15/424)
 endsum.north <- by(seoulweekend.edge, seoulweekend.edge$end,
                        \(m) sum(m[m$start.gu %in% c("Nowon-gu","Dobong-gu","Jungnang-gu","Gangbuk-gu"),"movement"])) |> c()
