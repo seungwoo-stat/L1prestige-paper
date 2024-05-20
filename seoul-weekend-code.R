@@ -171,3 +171,49 @@ legend(x=126.76,y=37.7,bty = "n",
        col=c("red",ngreen,dblue,jpurple,gorange),pch=15,
        legend=c("Hubs of Seoul","Nowon-gu","Dobong-gu","Jungnang-gu","Gangbuk-gu"))
 par(op)
+
+
+### Figure in the Introduction: 9 x 9 plot
+library(sf)
+library(shape)
+centers <- st_centroid(st_as_sf(seoulmap))
+centers <- data.frame(n = paste(centers$gu,centers$dong),
+                      matrix(unlist(centers$geometry),ncol=2,byrow=TRUE))
+edgelist <- seoulweekend.edge[seoulweekend.edge$movement >= 4000,]
+edgelist <- edgelist[edgelist$start != edgelist$end,]
+edgelist <- edgelist[order(edgelist$movement),]
+
+curved.Arrow <- \(x0,y0,x1,y1,lwd=1,alpha0=0.3,alpha1=1){
+  theta <- atan2(y1-y0,x1-x0)
+  rot.max <- matrix(c(cos(theta),sin(theta),-sin(theta),cos(theta)),ncol=2)
+  
+  x.temp <- seq(-1,0.6,length.out = 15)
+  x.temp <- c(x.temp,seq(x.temp[15]*2 - x.temp[14],1,length.out=15))
+  y.temp <- cosh(x.temp)/3
+  
+  segs.new <- rot.max %*% rbind(x.temp, y.temp)/2*sqrt((y1-y0)^2 + (x1-x0)^2)
+  x.new <- segs.new[1,] - segs.new[1,1] + x0
+  y.new <- segs.new[2,] - segs.new[2,1] + y0
+  segments(x.new[1:29], y.new[1:29],
+           x.new[2:30], y.new[2:30],
+           col = rev(hcl.colors(19, "YlGn", alpha = seq(alpha1,alpha0,length.out=19)))[c(1:15,rep(16,3),rep(17,4),rep(18,3),rep(19,4))], 
+           lwd = c(seq(lwd,lwd*3,length.out=15),seq(lwd*3,0,length.out=14)), 
+           lend = 1)
+}
+
+op <- par(mar = c(1, 1, 1, 1))
+plot(seoulmap, main = "(b) Weekend movements",
+     col = "gray80", 
+     border = "white")
+for(i in 1:nrow(edgelist)){
+  start <- centers[match(edgelist[i,]$start, centers$n),c("X1","X2")]
+  end <- centers[match(edgelist[i,]$end, centers$n),c("X1","X2")]
+  curved.Arrow(start$X1, start$X2, end$X1, end$X2, lwd = log(edgelist[i,]$movement - 1999)/4,
+               alpha0 = 0.2, alpha1 = 0.4)
+}
+plot(seoulmap[paste(seoulmap$gu,seoulmap$dong) %in% names(largediff.index),],
+     col = NA, border = "black", lwd = 2, add = TRUE)
+curved.Arrow(126.8, 37.65, 126.8, 37.68, lwd = 5)
+text(126.8, 37.65, "source",pos=1,font=2)
+text(126.8, 37.68, "destination",pos=3,font=2)
+par(op)
