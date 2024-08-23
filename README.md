@@ -15,4 +15,5 @@ This repository contains code to reproduce figures and analysis from the paper "
 
 ### Reference
 
--   Seungwoo Kang and Hee-Seok Oh. (2024) *L*<sub>1</sub> Prominence Measures for Directed Graphs. Manuscript.
+-   Seungwoo Kang and Hee-Seok Oh. (2024) [*L*<sub>1</sub> Prominence Measures for Directed Graphs](
+https://doi.org/10.48550/arXiv.2408.12078). *arXiv preprint arXiv:2408.12078*.
