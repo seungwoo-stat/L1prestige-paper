@@ -12,6 +12,8 @@ This repository contains code to reproduce figures and analysis from the paper "
 
 	- `seoulmap.rds` is a `SpatialPolygonDataFrame` object used for plotting the map of the Seoul city in Section 4.2.
 
+- `thesis` folder is a temporary repository. Files in this folder will be aggregated with the code files outlined above.
+
 
 ### Reference
 
